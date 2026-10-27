@@ -9,6 +9,20 @@ package org.jcr.enums;
  *
  * @author Gastón Uriel Fernández
  */
-public class EstadoCita {
+public enum EstadoCita {
+    PENDIENTE("Pendiente"),
+    CONFIRMADA("Confirmada"),
+    CANCELADA("Cancelada"),
+    COMPLETADA("Completada"),
+    NO_ASISTIO("No Asistió");
 
+    private final String descripcion;
+
+    private EstadoCita(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
 }

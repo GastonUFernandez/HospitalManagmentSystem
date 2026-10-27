@@ -16,7 +16,12 @@ public enum EspecialidadMedica {
     TRAUMATOLOGIA("Traumatología"),
     DERMATOLOGIA("Dermatología"),
     GINECOLOGIA("Ginecología"),
-    MEDICINA_GENERAL("Medicina General");
+    MEDICINA_GENERAL("Medicina General"),
+    OFALMOLOGIA("Oftalmología"),
+    PSIQUIATRIA("Psiquiatría"),
+    ONCOLOGIA("Oncología"),
+    UROLOGIA("Urología"),
+    OTORRINOLARINGOLOGIA("Otorrinolaringología");
 
     private final String descripcion;
 
