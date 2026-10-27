@@ -9,6 +9,22 @@ package org.jcr.enums;
  *
  * @author Gastón Uriel Fernández
  */
-public class EspecialidadMedica {
+public enum EspecialidadMedica {
+    CARDIOLOGIA("Cardiología"),
+    PEDIATRIA("Pediatría"),
+    NEUROLOGIA("Neurología"),
+    TRAUMATOLOGIA("Traumatología"),
+    DERMATOLOGIA("Dermatología"),
+    GINECOLOGIA("Ginecología"),
+    MEDICINA_GENERAL("Medicina General");
 
+    private final String descripcion;
+
+    private EspecialidadMedica(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
 }
