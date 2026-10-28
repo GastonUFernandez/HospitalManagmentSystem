@@ -5,10 +5,32 @@
 
 package org.jcr.entidades;
 
-/**
- *
- * @author Gastón Uriel Fernández
- */
-public class Paciente {
+import java.time.LocalDate;
+
+import org.jcr.enums.TipoSangre;
+
+public class Paciente extends Persona {
+  private String nombre;
+  private String apellido;
+  private String dni;
+  private LocalDate fechaNacimiento;
+  private TipoSangre tipoSangre;
+  private String telefono;
+  private String direccion;
+
+  public Paciente(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
+      String telefono, String direccion) {
+    super(nombre, apellido, dni, fechaNacimiento, tipo);
+    this.telefono = telefono;
+    this.direccion = direccion;
+  }
+
+  public String getTelefono() {
+    return telefono;
+  }
+
+  public String getDireccion() {
+    return direccion;
+  }
 
 }
