@@ -9,7 +9,10 @@ import java.time.LocalDate;
 import java.time.Period;
 
 import org.jcr.enums.TipoSangre;
+<<<<<<< Updated upstream
 import org.jcr.util.Validador;
+=======
+>>>>>>> Stashed changes
 
 public abstract class Persona {
   private String nombre;
@@ -19,12 +22,15 @@ public abstract class Persona {
   private TipoSangre tipoSangre;
 
   Persona(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo) {
+<<<<<<< Updated upstream
     Validador.validarString(nombre, "Nombre");
     Validador.validarString(apellido, "Apellido");
     Validador.validarDni(dni);
     Validador.validarObjeto(tipo, "Tipo de sangre");
     Validador.validarObjeto(fechaNacimiento, "Fecha de nacimiento");
 
+=======
+>>>>>>> Stashed changes
     this.nombre = nombre;
     this.apellido = apellido;
     this.dni = dni;
