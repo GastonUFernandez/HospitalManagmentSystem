@@ -18,14 +18,12 @@ public class Medico extends Persona {
   private TipoSangre tipoSangre;
   private String numeroMatricula;
   private EspecialidadMedica especialidad;
-  private Matricula matricula;
 
   public Medico(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
       String numeroMatricula, EspecialidadMedica especialidad) {
     super(nombre, apellido, dni, fechaNacimiento, tipo);
     this.numeroMatricula = numeroMatricula;
     this.especialidad = especialidad;
-    // this.matricula = new Matricula();
   }
 
     // public Matricula getMatricula() {
