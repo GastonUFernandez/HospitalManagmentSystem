@@ -8,6 +8,7 @@ package org.jcr.entidades;
 import java.time.LocalDate;
 
 import org.jcr.enums.TipoSangre;
+import org.jcr.util.Validador;
 
 public class Paciente extends Persona {
   private String nombre;
@@ -21,6 +22,10 @@ public class Paciente extends Persona {
   public Paciente(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
       String telefono, String direccion) {
     super(nombre, apellido, dni, fechaNacimiento, tipo);
+
+    Validador.validarString(telefono, "Teléfono");
+    Validador.validarString(direccion, "Dirección");
+
     this.telefono = telefono;
     this.direccion = direccion;
   }

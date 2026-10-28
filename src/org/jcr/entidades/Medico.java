@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 import org.jcr.enums.EspecialidadMedica;
 import org.jcr.enums.TipoSangre;
+import org.jcr.util.Validador;
 
 public class Medico extends Persona {
   private String nombre;
@@ -22,17 +23,20 @@ public class Medico extends Persona {
   public Medico(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
       String numeroMatricula, EspecialidadMedica especialidad) {
     super(nombre, apellido, dni, fechaNacimiento, tipo);
+
+    Validador.validarMatricula(numeroMatricula);
+    Validador.validarObjeto(especialidad, "Especialidad médica");
+
     this.numeroMatricula = numeroMatricula;
     this.especialidad = especialidad;
   }
 
-    // public Matricula getMatricula() {
-    //     return matricula;
-    // }
+  // public Matricula getMatricula() {
+  // return matricula;
+  // }
 
-    public EspecialidadMedica getEspecialidad() {
-        return especialidad;
-    }
-  
-  
+  public EspecialidadMedica getEspecialidad() {
+    return especialidad;
+  }
+
 }
