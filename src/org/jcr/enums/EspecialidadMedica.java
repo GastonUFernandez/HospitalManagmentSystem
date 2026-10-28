@@ -5,31 +5,27 @@
 
 package org.jcr.enums;
 
-/**
- *
- * @author Gastón Uriel Fernández
- */
 public enum EspecialidadMedica {
-    CARDIOLOGIA("Cardiología"),
-    PEDIATRIA("Pediatría"),
-    NEUROLOGIA("Neurología"),
-    TRAUMATOLOGIA("Traumatología"),
-    DERMATOLOGIA("Dermatología"),
-    GINECOLOGIA("Ginecología"),
-    MEDICINA_GENERAL("Medicina General"),
-    OFALMOLOGIA("Oftalmología"),
-    PSIQUIATRIA("Psiquiatría"),
-    ONCOLOGIA("Oncología"),
-    UROLOGIA("Urología"),
-    OTORRINOLARINGOLOGIA("Otorrinolaringología");
+  CARDIOLOGIA("Cardiología"),
+  NEUROLOGIA("Neurología"),
+  PEDIATRIA("Pediatría"),
+  TRAUMATOLOGIA("Traumatología"),
+  GINECOLOGIA("Ginecología"),
+  UROLOGIA("Urología"),
+  OFTALMOLOGIA("Oftalmología"),
+  DERMATOLOGIA("Dermatología"),
+  PSIQUIATRIA("Psiquiatría"),
+  MEDICINA_GENERAL("Medicina General"),
+  CIRUGIA_GENERAL("Cirugía General"),
+  ANESTESIOLOGIA("Anestesiología");
 
-    private final String descripcion;
+  private final String descripcion;
 
-    private EspecialidadMedica(String descripcion) {
-        this.descripcion = descripcion;
-    }
+  EspecialidadMedica(String descripcion) {
+    this.descripcion = descripcion;
+  }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+  public String getDescripcion() {
+    return descripcion;
+  }
 }
