@@ -8,16 +8,29 @@ package org.jcr.entidades;
 import java.time.LocalDate;
 
 import org.jcr.enums.TipoSangre;
+<<<<<<< Updated upstream
 import org.jcr.util.Validador;
 
 public class Paciente extends Persona {
   private String telefono;
   private String direccion;
   private HistoriaClinica historialClinico;
+=======
+
+public class Paciente extends Persona {
+  private String nombre;
+  private String apellido;
+  private String dni;
+  private LocalDate fechaNacimiento;
+  private TipoSangre tipoSangre;
+  private String telefono;
+  private String direccion;
+>>>>>>> Stashed changes
 
   public Paciente(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
       String telefono, String direccion) {
     super(nombre, apellido, dni, fechaNacimiento, tipo);
+<<<<<<< Updated upstream
 
     Validador.validarString(telefono, "Teléfono");
     Validador.validarString(direccion, "Dirección");
@@ -26,6 +39,10 @@ public class Paciente extends Persona {
     this.direccion = direccion;
 
     this.historialClinico = new HistoriaClinica(this);
+=======
+    this.telefono = telefono;
+    this.direccion = direccion;
+>>>>>>> Stashed changes
   }
 
   public String getTelefono() {
