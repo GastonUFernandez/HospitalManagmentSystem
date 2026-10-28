@@ -25,16 +25,17 @@ public class Medico extends Persona {
     super(nombre, apellido, dni, fechaNacimiento, tipo);
     this.numeroMatricula = numeroMatricula;
     this.especialidad = especialidad;
-    // this.matricula = new Matricula();
+    this.matricula = new Matricula();
   }
 
-    // public Matricula getMatricula() {
-    //     return matricula;
-    // }
+  public Matricula getMatricula() {
+    return matricula;
+  }
 
-    public EspecialidadMedica getEspecialidad() {
-        return especialidad;
-    }
-  
-  
+  public EspecialidadMedica getEspecialidad() {
+    return especialidad;
+  }
+
+  // TODO: getDepartamento(), setDepartamento(Departamento)
+  // TODO: addCita(Cita), getCitas()
 }

@@ -17,12 +17,18 @@ public class Paciente extends Persona {
   private TipoSangre tipoSangre;
   private String telefono;
   private String direccion;
+  private HistoriaClinica historia;
 
   public Paciente(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
       String telefono, String direccion) {
     super(nombre, apellido, dni, fechaNacimiento, tipo);
     this.telefono = telefono;
     this.direccion = direccion;
+    this.historia = new HistoriaClinica();
+  }
+
+  public HistoriaClinica getHistoriaClinica() {
+    return historia;
   }
 
   public String getTelefono() {
@@ -33,4 +39,7 @@ public class Paciente extends Persona {
     return direccion;
   }
 
+  // TODO: getHospital(), setHospital(Hospital)
+
+  // TODO: addCita(Cita), getCitas()
 }
