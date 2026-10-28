@@ -6,51 +6,58 @@
 package org.jcr.entidades;
 
 import java.time.LocalDate;
-
 import org.jcr.enums.TipoSangre;
-<<<<<<< Updated upstream
 import org.jcr.util.Validador;
 
 public class Paciente extends Persona {
-  private String telefono;
-  private String direccion;
-  private HistoriaClinica historialClinico;
-=======
+    private String telefono;
+    private String direccion;
+    private HistoriaClinica historialClinico;
+    private Hospital hospital; // Agregado para cerrar la relación bidireccional
 
-public class Paciente extends Persona {
-  private String nombre;
-  private String apellido;
-  private String dni;
-  private LocalDate fechaNacimiento;
-  private TipoSangre tipoSangre;
-  private String telefono;
-  private String direccion;
->>>>>>> Stashed changes
+    public Paciente(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
+        String telefono, String direccion) {
+        super(nombre, apellido, dni, fechaNacimiento, tipo);
 
-  public Paciente(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
-      String telefono, String direccion) {
-    super(nombre, apellido, dni, fechaNacimiento, tipo);
-<<<<<<< Updated upstream
+        Validador.validarString(telefono, "Teléfono");
+        Validador.validarString(direccion, "Dirección");
 
-    Validador.validarString(telefono, "Teléfono");
-    Validador.validarString(direccion, "Dirección");
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.historialClinico = new HistoriaClinica(this);
+    }
 
-    this.telefono = telefono;
-    this.direccion = direccion;
+    public String getTelefono() {
+        return telefono;
+    }
 
-    this.historialClinico = new HistoriaClinica(this);
-=======
-    this.telefono = telefono;
-    this.direccion = direccion;
->>>>>>> Stashed changes
-  }
+    public void setTelefono(String telefono) {
+        Validador.validarString(telefono, "Teléfono");
+        this.telefono = telefono;
+    }
 
-  public String getTelefono() {
-    return telefono;
-  }
+    public String getDireccion() {
+        return direccion;
+    }
 
-  public String getDireccion() {
-    return direccion;
-  }
+    public void setDireccion(String direccion) {
+        Validador.validarString(direccion, "Dirección");
+        this.direccion = direccion;
+    }
 
+    public HistoriaClinica getHistorialClinico() {
+        return historialClinico;
+    }
+
+    public void setHistorialClinico(HistoriaClinica historialClinico) {
+        this.historialClinico = historialClinico;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
 }

@@ -6,62 +6,48 @@
 package org.jcr.entidades;
 
 import java.time.LocalDate;
-<<<<<<< Updated upstream
-
 import org.jcr.enums.EspecialidadMedica;
 import org.jcr.enums.TipoSangre;
 import org.jcr.util.Validador;
 
 public class Medico extends Persona {
-  private EspecialidadMedica especialidad;
-  private Matricula matricula;
+    private Matricula matricula;
+    private EspecialidadMedica especialidad;
+    private Departamento departamento;
 
-  public Medico(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
-      String numeroMatricula, EspecialidadMedica especialidad) {
-    super(nombre, apellido, dni, fechaNacimiento, tipo);
+    public Medico(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
+        String numeroMatricula, EspecialidadMedica especialidad) {
+        super(nombre, apellido, dni, fechaNacimiento, tipo);
 
-    this.matricula = new Matricula(numeroMatricula);
+        Validador.validarObjeto(especialidad, "Especialidad médica");
+        
+        this.matricula = new Matricula(numeroMatricula);
+        this.especialidad = especialidad;
+    }
 
-    Validador.validarObjeto(especialidad, "Especialidad médica");
-    this.especialidad = especialidad;
-  }
+    public Matricula getMatricula() {
+        return matricula;
+    }
 
-  public Matricula getMatricula() {
-    return matricula;
-  }
-
-  public EspecialidadMedica getEspecialidad() {
-    return especialidad;
-  }
-=======
->>>>>>> Stashed changes
-
-import org.jcr.enums.EspecialidadMedica;
-import org.jcr.enums.TipoSangre;
-
-public class Medico extends Persona {
-  private String nombre;
-  private String apellido;
-  private String dni;
-  private LocalDate fechaNacimiento;
-  private TipoSangre tipoSangre;
-  private String numeroMatricula;
-  private EspecialidadMedica especialidad;
-
-  public Medico(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
-      String numeroMatricula, EspecialidadMedica especialidad) {
-    super(nombre, apellido, dni, fechaNacimiento, tipo);
-    this.numeroMatricula = numeroMatricula;
-    this.especialidad = especialidad;
-  }
-
-    // public Matricula getMatricula() {
-    //     return matricula;
-    // }
+    public void setMatricula(Matricula matricula) {
+        Validador.validarObjeto(matricula, "Matrícula");
+        this.matricula = matricula;
+    }
 
     public EspecialidadMedica getEspecialidad() {
         return especialidad;
     }
-  
-  
+
+    public void setEspecialidad(EspecialidadMedica especialidad) {
+        Validador.validarObjeto(especialidad, "Especialidad médica");
+        this.especialidad = especialidad;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
 }
