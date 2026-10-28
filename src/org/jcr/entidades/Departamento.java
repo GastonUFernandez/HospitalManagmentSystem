@@ -6,6 +6,7 @@
 package org.jcr.entidades;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 import org.jcr.enums.EspecialidadMedica;
 import org.jcr.util.Validador;
 
@@ -20,18 +21,6 @@ public class Departamento {
     private List<Medico> medicos;
     private List<Sala> salas;
 
-    public void setHospital(Hospital hospital) {
-        this.hospital = hospital;
-        hospital.agregarDepartamento(this);
-    }
-    public Sala crearSala(String numero, String tipo){
-        Sala nuevaSala = new Sala(numero, tipo, this);
-        salas.add(nuevaSala);
-        return nuevaSala;
-        
-    }
-    
-
     public Departamento(String nombre, EspecialidadMedica especialidad) {
         Validador.validarString(nombre, "Nombre");
         if (especialidad == null){
@@ -41,11 +30,30 @@ public class Departamento {
         this.especialidad = especialidad;
         this.medicos = new ArrayList<>();
         this.salas = new ArrayList<>();
-    
-        }   
+    }   
+
+    public void setHospital(Hospital hospital) {
+        if (this.hospital != hospital) {
+            Hospital hospitalAnterior = this.hospital;
+            this.hospital = hospital;
+            if (hospitalAnterior != null) {
+                // Limpieza opcional del hospital anterior
+            }
+            if (hospital != null && !hospital.getDepartamentos().contains(this)) {
+                hospital.agregarDepartamento(this);
+            }
+        }
+    }
+
+    public Sala crearSala(String numero, String tipo){
+        Sala nuevaSala = new Sala(numero, tipo, this);
+        salas.add(nuevaSala);
+        return nuevaSala;
+    }
+
     public void agregarMedico(Medico medico){
         if (medico == null){
-            throw new IllegalArgumentException("Error, el campo no puede estar vacío. ");   
+            throw new IllegalArgumentException("Error, el campo no puede estar vacío.");   
         }
         if (medico.getEspecialidad() != this.especialidad){
             throw new IllegalArgumentException("Error, la especialidad no coincide con el departamento.");
@@ -56,5 +64,25 @@ public class Departamento {
                 medico.setDepartamento(this);
             }
         }
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public EspecialidadMedica getEspecialidad() {
+        return especialidad;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public List<Medico> getMedicos() {
+        return Collections.unmodifiableList(medicos);
+    }
+
+    public List<Sala> getSalas() {
+        return Collections.unmodifiableList(salas);
     }
 }
