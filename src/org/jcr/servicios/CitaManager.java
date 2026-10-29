@@ -28,11 +28,56 @@ public class CitaManager implements CitaService {
   };
 
   public List<Cita> getCitasPorPaciente(Paciente paciente) {
+    List<Cita> resultado = new ArrayList<>();
+
+    // Valida que el paciente no sea nulo
+    if (paciente == null) {
+      return resultado;
+    }
+
+    for (Cita cita : listaCitas) {
+      // Valida que la cita sea del paciente
+      if (cita.getPaciente().equals(paciente)) {
+        resultado.add(cita);
+      }
+    }
+
+    return resultado;
   };
 
   public List<Cita> getCitasPorMedico(Medico medico) {
+    List<Cita> resultado = new ArrayList<>();
+
+    // Valida que el medico no sea nulo
+    if (medico == null) {
+      return resultado;
+    }
+
+    for (Cita cita : listaCitas) {
+      // Valida que la cita sea del medico
+      if (cita.getMedico().equals(medico)) {
+        resultado.add(cita);
+      }
+    }
+
+    return resultado;
   };
 
   public List<Cita> getCitasPorSala(Sala sala) {
+    List<Cita> resultado = new ArrayList<>();
+
+    // Valida que la sala no sea nulo
+    if (sala == null) {
+      return resultado;
+    }
+
+    for (Cita cita : listaCitas) {
+      // Valida que la cita sea de la sala
+      if (cita.getSala().equals(sala)) {
+        resultado.add(cita);
+      }
+    }
+
+    return resultado;
   };
 }
