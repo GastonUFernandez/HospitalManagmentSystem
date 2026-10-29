@@ -46,6 +46,7 @@ public class Departamento {
     }
 
     public Sala crearSala(String numero, String tipo){
+        Validador.validarObjeto(numero, tipo);
         Sala nuevaSala = new Sala(numero, tipo, this);
         salas.add(nuevaSala);
         return nuevaSala;
