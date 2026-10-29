@@ -5,10 +5,22 @@
 
 package org.jcr.servicios;
 
-/**
- *
- * @author Gastón Uriel Fernández
- */
-public class CitaService {
+import java.time.LocalDateTime;
+import java.util.List;
 
+import org.jcr.entidades.Cita;
+import org.jcr.entidades.Medico;
+import org.jcr.entidades.Paciente;
+import org.jcr.entidades.Sala;
+import org.jcr.excepciones.CitaException;
+
+interface CitaService {
+  public Cita programarCita(Paciente paciente, Medico medico, Sala sala, LocalDateTime fecha, double costo)
+      throws CitaException;
+
+  public List<Cita> getCitasPorPaciente(Paciente paciente);
+
+  public List<Cita> getCitasPorMedico(Medico medico);
+
+  public List<Cita> getCitasPorSala(Sala sala);
 }
