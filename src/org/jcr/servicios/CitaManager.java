@@ -29,10 +29,12 @@ public class CitaManager implements CitaService {
     if (paciente == null || medico == null || sala == null || fecha == null || costo < 0) {
       throw new IllegalArgumentException("Error el campo no puede estar vacío. ");
     }
+
     if (fecha.isBefore(LocalDateTime.now())) {
       throw new CitaException("Error: No se puede programar una cita en una fecha pasada.");
     }
-    if (!medico.getEspecialidad().equals(sala.getTipo())) {
+
+    if (!medico.getEspecialidad().equals(sala.getDepartamento().getEspecialidad())) {
       throw new CitaException("Error: La especialidad del médico no coincide con la de la sala.");
     }
 
