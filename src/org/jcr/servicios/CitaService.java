@@ -14,7 +14,7 @@ import org.jcr.entidades.Paciente;
 import org.jcr.entidades.Sala;
 import org.jcr.excepciones.CitaException;
 
-interface CitaService {
+public interface CitaService {
   public Cita programarCita(Paciente paciente, Medico medico, Sala sala, LocalDateTime fecha, double costo)
       throws CitaException;
 
