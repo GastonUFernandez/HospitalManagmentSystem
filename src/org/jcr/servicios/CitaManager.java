@@ -50,8 +50,15 @@ public class CitaManager implements CitaService {
         }
       }
     }
+    
+    // Crea una nueva Cita
     Cita cita = new Cita(paciente, medico, sala, fecha, costo);
     listaCitas.add(cita);
+    
+    // Agrega la cita a Paciente y Medico
+    paciente.addCita(cita);
+    medico.addCita(cita);
+    
     return cita;
   }
 

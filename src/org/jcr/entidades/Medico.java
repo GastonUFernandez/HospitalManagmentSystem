@@ -61,12 +61,12 @@ public class Medico extends Persona {
     }
     this.departamento = departamento;
   }
-  
+
   public List<Cita> getCitas() {
     return Collections.unmodifiableList(citas);
   }
 
-  public void setCitas(Cita cita) {
+  public void addCita(Cita cita) {
     Validador.validarObjeto(cita, "Nueva cita");
     this.citas.add(cita);
   }
