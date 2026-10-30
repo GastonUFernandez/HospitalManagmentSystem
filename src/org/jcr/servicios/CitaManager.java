@@ -26,8 +26,13 @@ public class CitaManager implements CitaService {
   @Override
   public Cita programarCita(Paciente paciente, Medico medico, Sala sala, LocalDateTime fecha, double costo)
       throws CitaException {
-    if (paciente == null || medico == null || sala == null || fecha == null || costo < 0) {
-      throw new IllegalArgumentException("Error el campo no puede estar vacío. ");
+
+    if (costo <= 0) {
+      throw new CitaException("Error: el costo no puede ser menor a 1");
+    }
+
+    if (paciente == null || medico == null || sala == null || fecha == null) {
+      throw new CitaException("Error el campo no puede estar vacío.");
     }
 
     if (fecha.isBefore(LocalDateTime.now())) {
@@ -50,15 +55,16 @@ public class CitaManager implements CitaService {
         }
       }
     }
-    
+
     // Crea una nueva Cita
     Cita cita = new Cita(paciente, medico, sala, fecha, costo);
     listaCitas.add(cita);
-    
-    // Agrega la cita a Paciente y Medico
+
+    // Agrega la cita a Sala, Paciente y Medico
     paciente.addCita(cita);
     medico.addCita(cita);
-    
+    sala.addCita(cita);
+
     return cita;
   }
 
