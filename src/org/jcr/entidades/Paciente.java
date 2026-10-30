@@ -64,7 +64,21 @@ public class Paciente extends Persona {
   }
 
   public void setHospital(Hospital hospital) {
+    // 1. Si ya tiene un hospital anterior y es distinto al nuevo
+    if (this.hospital != null && this.hospital != hospital) {
+      Hospital hospitalAnterior = this.hospital;
+      this.hospital = null; // Evita bucle infinito antes de remover
+      hospitalAnterior.removerPaciente(this);
+    }
+
+    // 2. Asignar el nuevo hospital
     this.hospital = hospital;
+
+    // 3. Si el nuevo hospital no es nulo y todavía no nos tiene en su lista,
+    // agregarnos
+    if (hospital != null && !hospital.getPacientes().contains(this)) {
+      hospital.agregarPaciente(this);
+    }
   }
 
   public List<Cita> getCitas() {
