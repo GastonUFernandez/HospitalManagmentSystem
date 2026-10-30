@@ -7,6 +7,7 @@ package org.jcr.entidades;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.jcr.enums.EspecialidadMedica;
@@ -59,5 +60,14 @@ public class Medico extends Persona {
           "Error, la especialidad del medico no coincide con la especialidad del departamento. ");
     }
     this.departamento = departamento;
+  }
+  
+  public List<Cita> getCitas() {
+    return Collections.unmodifiableList(citas);
+  }
+
+  public void setCitas(Cita cita) {
+    Validador.validarObjeto(cita, "Nueva cita");
+    this.citas.add(cita);
   }
 }
