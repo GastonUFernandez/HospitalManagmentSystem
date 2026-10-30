@@ -55,11 +55,21 @@ public class Medico extends Persona {
 
   public void setDepartamento(Departamento departamento) {
     Validador.validarObjeto(departamento, "Departamento");
+    
+    // Valida que la Sala sea de la misma especialidad que del Medico
     if (especialidad != departamento.getEspecialidad()) {
       throw new IllegalArgumentException(
           "Error, la especialidad del medico no coincide con la especialidad del departamento. ");
     }
+
+    if (this.departamento != null && this.departamento != departamento) {
+        Departamento departamentoAnterior = this.departamento;
+        this.departamento = null; // Evita bucle infinito antes de remover
+        departamentoAnterior.removerMedico(this);
+    }
+    
     this.departamento = departamento;
+    departamento.agregarMedico(this);
   }
 
   public List<Cita> getCitas() {

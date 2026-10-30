@@ -54,6 +54,15 @@ public class Hospital {
       }
     }
   }
+  
+  public void removerDepartamento(Departamento departamento) {
+    if (departamento != null && departamentos.contains(departamento)) {
+      departamentos.remove(departamento);
+      if (departamento.getHospital() == this) {
+        departamento.setHospital(null);
+      }
+    }
+  }
 
   public void agregarPaciente(Paciente paciente) {
     if (paciente != null && !pacientes.contains(paciente)) {
