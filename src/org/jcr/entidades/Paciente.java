@@ -6,58 +6,88 @@
 package org.jcr.entidades;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.jcr.enums.TipoSangre;
 import org.jcr.util.Validador;
 
 public class Paciente extends Persona {
-    private String telefono;
-    private String direccion;
-    private HistoriaClinica historialClinico;
-    private Hospital hospital; // Agregado para cerrar la relación bidireccional
+  private String telefono;
+  private String direccion;
+  private HistoriaClinica historialClinico;
+  private Hospital hospital; // Agregado para cerrar la relación bidireccional
+  private List<Cita> citas;
 
-    public Paciente(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
-        String telefono, String direccion) {
-        super(nombre, apellido, dni, fechaNacimiento, tipo);
+  public Paciente(String nombre, String apellido, String dni, LocalDate fechaNacimiento, TipoSangre tipo,
+      String telefono, String direccion) {
+    super(nombre, apellido, dni, fechaNacimiento, tipo);
 
-        Validador.validarString(telefono, "Teléfono");
-        Validador.validarString(direccion, "Dirección");
+    Validador.validarString(telefono, "Teléfono");
+    Validador.validarString(direccion, "Dirección");
 
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.historialClinico = new HistoriaClinica(this);
+    this.telefono = telefono;
+    this.direccion = direccion;
+    this.historialClinico = new HistoriaClinica(this);
+    this.citas = new ArrayList<>();
+  }
+
+  public String getTelefono() {
+    return telefono;
+  }
+
+  public void setTelefono(String telefono) {
+    Validador.validarString(telefono, "Teléfono");
+    this.telefono = telefono;
+  }
+
+  public String getDireccion() {
+    return direccion;
+  }
+
+  public void setDireccion(String direccion) {
+    Validador.validarString(direccion, "Dirección");
+    this.direccion = direccion;
+  }
+
+  public HistoriaClinica getHistoriaClinica() {
+    return historialClinico;
+  }
+
+  public void setHistorialClinico(HistoriaClinica historialClinico) {
+    this.historialClinico = historialClinico;
+  }
+
+  public Hospital getHospital() {
+    return hospital;
+  }
+
+  public void setHospital(Hospital hospital) {
+    // 1. Si ya tiene un hospital anterior y es distinto al nuevo
+    if (this.hospital != null && this.hospital != hospital) {
+      Hospital hospitalAnterior = this.hospital;
+      this.hospital = null; // Evita bucle infinito antes de remover
+      hospitalAnterior.removerPaciente(this);
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
+    // 2. Asignar el nuevo hospital
+    this.hospital = hospital;
 
-    public void setTelefono(String telefono) {
-        Validador.validarString(telefono, "Teléfono");
-        this.telefono = telefono;
+    // 3. Si el nuevo hospital no es nulo y todavía no nos tiene en su lista,
+    // agregarnos
+    if (hospital != null && !hospital.getPacientes().contains(this)) {
+      hospital.agregarPaciente(this);
     }
+  }
 
-    public String getDireccion() {
-        return direccion;
-    }
+  public List<Cita> getCitas() {
+    return Collections.unmodifiableList(citas);
+  }
 
-    public void setDireccion(String direccion) {
-        Validador.validarString(direccion, "Dirección");
-        this.direccion = direccion;
-    }
+  public void addCita(Cita cita) {
+    Validador.validarObjeto(cita, "Nueva cita");
 
-    public HistoriaClinica getHistorialClinico() {
-        return historialClinico;
-    }
-
-    public void setHistorialClinico(HistoriaClinica historialClinico) {
-        this.historialClinico = historialClinico;
-    }
-
-    public Hospital getHospital() {
-        return hospital;
-    }
-
-    public void setHospital(Hospital hospital) {
-        this.hospital = hospital;
-    }
+    this.citas.add(cita);
+  }
 }
